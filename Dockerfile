@@ -10,14 +10,13 @@ ENV EXTERNAL_SCRIPTS=hubot-diagnostics,hubot-help,hubot-google-images,hubot-goog
 RUN npm install -g \
     hubot@${HUBOT_VERSION} \
     yo@1.7.0 \
-    generator-hubot@0.3.1
+    generator-hubot@0.3.1 \
+    transmission
 
 USER root 
 WORKDIR /opt/bot
 
 ADD bot /opt/bot
-
-RUN npm install transmission 
 
 CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
 	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
