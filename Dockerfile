@@ -1,7 +1,6 @@
-FROM node:6.2.0
+FROM node:8.4.0
 
 RUN mkdir /opt/bot \
-    && useradd -ms /bin/bash node \
     && chown -R node /opt/bot
 
 ENV HUBOT_VERSION 2.19.0
@@ -18,7 +17,7 @@ WORKDIR /opt/bot
 
 ADD bot /opt/bot
 
-RUN npm install 
+RUN npm install && npm install transmission 
 
 CMD node -e "console.log(JSON.stringify('$EXTERNAL_SCRIPTS'.split(',')))" > external-scripts.json && \
 	npm install $(node -e "console.log('$EXTERNAL_SCRIPTS'.split(',').join(' '))") && \
