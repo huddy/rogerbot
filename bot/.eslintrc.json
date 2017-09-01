@@ -1,0 +1,6 @@
+{
+    "extends": "actano",
+    "rules": {
+      "import/no-extraneous-dependencies": ["error", {"devDependencies": ["**/*.ut.js"]}]
+    }
+}
